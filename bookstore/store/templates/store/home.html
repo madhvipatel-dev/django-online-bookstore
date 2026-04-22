@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Book Store</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        /* HEADER */
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .top-links a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .top-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ACTION BAR */
+        .actions {
+            padding: 15px 30px;
+        }
+
+        .actions a {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .actions a:hover {
+            background: #2980b9;
+        }
+
+        /* SEARCH */
+        .search-box {
+            padding: 0 30px 20px;
+        }
+
+        .search-box input {
+            padding: 8px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            border: none;
+            background: #2ecc71;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-box button:hover {
+            background: #27ae60;
+        }
+
+        /* TABLE */
+        .table-container {
+            padding: 0 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+
+        td, th {
+            padding: 12px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* BUTTON LINKS */
+        .btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .view-btn {
+            background: #1abc9c;
+        }
+
+        .cart-btn {
+            background: #e67e22;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            text-align: center;
+            background: #ecf0f1;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body align="center">
+
+<!-- HEADER -->
+<div class="header" >
+    <body align="center"><h1> Online Book Store</h1></body>
+    
+    
+
+    <div class="top-links">
+        {% if user.is_authenticated %}
+            Welcome, <b>{{ user.username }}</b> |
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- ACTION BUTTONS -->
+<div class="actions">
+    <a href="/add-book/">➕ Add Book</a>
+    <a href="/cart/">🛒 Cart</a>
+</div>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <form method="GET" action="/search/">
+        <input type="text" name="q" placeholder="Search books...">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<!-- TABLE -->
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>₹{{ book.price }}</td>
+            <td>
+                <a href="/book/{{ book.id }}" class="btn view-btn">View</a>
+                <a href="/add-cart/{{ book.id }}" class="btn cart-btn">Add</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No books available</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p><b>Django Bookstore Project</b></p>
+    <p>
+        Made by Student ID:
+        <b>25MCA012</b> |
+        <b>25MCA015</b> |
+        <b>25MCA022</b>
+    </p>
+</footer>
+
+</body>
+</html>

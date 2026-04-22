@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .info p {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+
+        /* Reviews */
+        .review-box {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .review-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .back-btn {
+            background: #7f8c8d;
+        }
+
+        .cart-btn {
+            background: #e67e22;
+            margin-left: 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1>{{ book.title }}</h1>
+
+        <div class="info">
+            <p><b>Author:</b> {{ book.author }}</p>
+            <p class="price"><b>Price:</b> ₹{{ book.price }}</p>
+            <p><b>Description:</b> {{ book.description }}</p>
+        </div>
+
+        <a href="/add-cart/{{ book.id }}" class="btn cart-btn">Add to Cart</a>
+        <a href="/" class="btn back-btn">⬅ Back</a>
+
+        <hr>
+
+        <div class="review-title">Reviews</div>
+
+        {% for review in reviews %}
+            <div class="review-box">
+                 {{ review.rating }} - {{ review.comment }}
+            </div>
+        {% empty %}
+            <p>No reviews yet</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

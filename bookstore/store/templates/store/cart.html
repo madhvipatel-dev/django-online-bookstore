@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+        }
+
+        td, th {
+            padding: 12px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .checkout-btn {
+            background: #27ae60;
+        }
+
+        .checkout-btn:hover {
+            background: #219150;
+        }
+
+        .back-btn {
+            background: #7f8c8d;
+            margin-left: 10px;
+        }
+
+        .back-btn:hover {
+            background: #636e72;
+        }
+
+        .empty {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛒 Your Cart</h1>
+
+    {% if items %}
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+
+        {% for item in items %}
+        <tr>
+            <td>{{ item.book.title }}</td>
+            <td>₹{{ item.book.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>₹{{ item.book.price|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="total">
+        Total Amount: ₹
+        {% for item in items %}
+            {{ item.book.price }}
+        {% endfor %}
+    </div>
+
+    <a href="/checkout/" class="btn checkout-btn">Proceed to Checkout</a>
+    <a href="/" class="btn back-btn">⬅ Back</a>
+
+    {% else %}
+        <div class="empty">
+            Your cart is empty 
+            <br><br>
+            <a href="/" class="btn back-btn">Go to Home</a>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
