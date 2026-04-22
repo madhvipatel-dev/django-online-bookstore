@@ -1,10 +1,10 @@
-# 📚 Django Online Bookstore
+ Django Online Bookstore
 
-## 🔹 Project Description
+ 🔹 Project Description
 
 This is a Django-based web application for an online bookstore where users can browse, search, and purchase books.
 
-## 🔹 Features
+ 🔹 Features
 
 * User Registration & Login
 * Add Books
@@ -12,21 +12,21 @@ This is a Django-based web application for an online bookstore where users can b
 * Cart System
 * Order Management
 
-## 🔹 Technologies Used
+🔹 Technologies Used
 
 * Python
 * Django
 * HTML, CSS
 * SQLite
 
-## 🔹 How to Run
+🔹 How to Run
 
 1. Clone the repository
 2. Create virtual environment
 3. Install requirements
 4. Run server using:
+   
    python manage.py runserver
-
-## 🔹 Author
+ 🔹 Author
 
 Madhvi Patel
